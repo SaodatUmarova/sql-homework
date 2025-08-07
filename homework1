@@ -1,0 +1,11 @@
+CREATE DATABASE SchoolDB
+USE SchoolDB
+CREATE TABLE Students (
+StudentID INT PRIMARY KEY, 
+Name VARCHAR(50), 
+Age INT)
+INSERT INTO Students values
+(1, 'Shahina', 18),
+(2, 'Risolat', 20),
+(3, 'Farida', 19)
+Select* from Students
