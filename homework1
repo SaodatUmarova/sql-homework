@@ -1,9 +1,45 @@
+Easy
+1.	Define the following terms: data, database, relational database, and table.
+data-information, especially facts or numbers, collected to be examined and considered and used to help decision-making, or information in an electronic form that can be stored and used by a computer.
+database-a large amount of information stored in a computer system in such a way that it can be easily looked at or changed.
+relational database- a type of database that organizes data into rows and columns, forming tables where data points are related to each other.
+table-an arrangement of facts and numbers in rows or blocks, especially in printed material.
+2.	List five key features of SQL Server.
+data warehousing, mobile business intelligence, and scalability, optimising performance, enhancing security.
+3.	What are the different authentication modes available when connecting to SQL Server? (Give at least 2)
+Windows Authentication mode and mixed mode
+Medium
+4.	Create a new database in SSMS named SchoolDB.
 CREATE DATABASE SchoolDB
+5.	Write and execute a query to create a table called Students with columns: StudentID (INT, PRIMARY KEY), Name (VARCHAR(50)), Age (INT).
 USE SchoolDB
 CREATE TABLE Students (
 StudentID INT PRIMARY KEY, 
 Name VARCHAR(50), 
 Age INT)
+6.	Describe the differences between SQL Server, SSMS, and SQL.
+ Differences
+Aspect	SQL	SQL Server	SSMS
+Type	Language	Database Software (RDBMS)	GUI Management Tool
+Purpose	Query/manage databases	Store/manage data	Administer SQL Server visually
+Vendor	Standard (ANSI/ISO)	Microsoft	Microsoft
+Dependency	Used by many RDBMS	Runs as a service	Requires SQL Server to work
+
+Hard
+7.	Research and explain the different SQL commands: DQL, DML, DDL, DCL, TCL with examples.
+Category	Commands	Function
+DQL	SELECT	Retrieve data.
+DML	INSERT, UPDATE, DELETE, MERGE	Modify data.
+DDL	CREATE, ALTER, DROP, TRUNCATE	Define/modify database structures.
+DCL	GRANT, REVOKE	Control access permissions.
+TCL	COMMIT, ROLLBACK, SAVEPOINT	Manage transactions.
+________________________________________
+Key Notes
+•	DQL vs. DML: SELECT is technically DQL, while INSERT/UPDATE/DELETE are DML.
+•	DDL vs. DML: DDL changes the database schema, while DML changes data within it.
+•	TCL is critical for ensuring ACID (Atomicity, Consistency, Isolation, Durability) properties in transactions.
+
+8.	Write a query to insert three records into the Students table.\
 INSERT INTO Students values
 (1, 'Shahina', 18),
 (2, 'Risolat', 20),
