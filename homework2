@@ -1,0 +1,116 @@
+Basic-Level Tasks (10)
+1.	Create a table Employees with columns: EmpID INT, Name (VARCHAR(50)), and Salary (DECIMAL(10,2)).
+CREATE table Employees (EmpID INT, Name VARCHAR(50), Salary DECIMAL(10,2))
+2.	Insert three records into the Employees table using different INSERT INTO approaches (single-row insert and multiple-row insert).
+INSERT INTO Employees VALUES 
+(1, 'Jesicca', 100000)
+
+INSERT INTO Employees VALUES
+(2, 'Hurrem', 200000),
+(3, 'Jacob', 500000);
+1.	Update the Salary of an employee to 7000 where EmpID = 1.
+UPDATE  Employees
+set Salary=7000
+where EmpID=1
+2.	Delete a record from the Employees table where EmpID = 2.
+DELETE from Employees
+where EmpID=2
+3.	Give a brief definition for difference between DELETE, TRUNCATE, and DROP.
+Here’s a concise comparison of DELETE, TRUNCATE, and DROP in SQL:
+1.	DELETE
+o	Removes specific rows from a table based on a WHERE clause.
+o	Is DML (Data Manipulation Language) – can be rolled back (if in a transaction).
+o	Logs individual row deletions, making it slower for large tables.
+o	Does not reset identity counters or free up storage space immediately.
+2.	TRUNCATE
+o	Removes all rows from a table (no WHERE clause).
+o	Is DDL (Data Definition Language) – auto-commits (cannot be rolled back in most databases).
+o	Faster than DELETE (logs only page deallocation, not rows).
+o	Resets identity counters and deallocates storage for reuse.
+o	Requires higher privileges (like DROP).
+3.	DROP
+o	Deletes the entire table (structure + data) from the database.
+o	Is DDL – auto-commits; irreversible without backups.
+o	Frees up storage space completely.
+o	All dependent objects (indexes, triggers) are also removed.
+Key Summary:
+Command	Scope	Rollback?	Speed	Resets Identity?	Storage Freed?
+DELETE	Rows	Yes	Slow	No	No (log grows)
+TRUNCATE	All rows	No*	Fast	Yes	Yes (reusable)
+DROP	Table + structure	No	Fastest	N/A	Yes (reclaimed)
+(*Some databases like SQL Server allow TRUNCATE in a transaction to roll back.)
+Use Case Examples:
+•	DELETE: "Remove only employees who resigned."
+•	TRUNCATE: "Clear all data quickly for testing but keep the table."
+•	DROP: "Permanently remove a deprecated table."
+
+4.	Modify the Name column in the Employees table to VARCHAR(100).
+ALTER table Employees
+alter column Name varchar(100)
+5.	Add a new column Department (VARCHAR(50)) to the Employees table.
+ALTER table Employees
+add Department varchar (50)
+6.	Change the data type of the Salary column to FLOAT.
+ALTER table Employees 
+alter column Salary float
+7.	Create another table Departments with columns DepartmentID (INT, PRIMARY KEY) and DepartmentName (VARCHAR(50)).
+CREATE table Departments (DepartmentID INT PRIMARY KEY, DepartmentName VARCHAR(50))
+8.	Remove all records from the Employees table without deleting its structure.
+TRUNCATE table Departments
+________________________________________
+Intermediate-Level Tasks (6)
+11.	Insert five records into the Departments table using INSERT INTO SELECT method(you can write anything you want as data).
+INSERT INTO Departments VALUES
+(1, 'HR'),
+(2,'Finance'),
+(3,'Compliance'),
+(4,'Credit'),
+(5,'Plastic');
+12.	Update the Department of all employees where Salary > 5000 to 'Management'.
+ALTER table Employees
+add DepartmentName varchar(50)
+
+UPDATE Employees
+set DepartmentName= 'HR'
+UPDATE Employees
+set DepartmentName= 'Management'
+where Salary>5000
+11.	Write a query that removes all employees but keeps the table structure intact.
+TRUNCATE table Employees
+12.	Drop the Department column from the Employees table.
+DROP table Employees
+13.	Rename the Employees table to StaffMembers using SQL commands.
+exec sp_rename 'Employees', 'StaffMembers'
+14.	Write a query to completely remove the Departments table from the database.
+DROP table Departments
+________________________________________
+Advanced-Level Tasks (9)
+17.	Create a table named Products with at least 5 columns, including: ProductID (Primary Key), ProductName (VARCHAR), Category (VARCHAR), Price (DECIMAL)
+CREATE table Products ( ProductID INT Primary Key, ProductName VARCHAR(50), Category VARCHAR(50), Price DECIMAL)
+18.	Add a CHECK constraint to ensure Price is always greater than 0.
+ALTER table Products
+ADD CONSTRAINT Check_Positive CHECK (Price>0)
+19.	Modify the table to add a StockQuantity column with a DEFAULT value of 50.
+ALTER table Products
+ADD StockQuantity int
+Update Products
+  set StockQuantity = 50
+20.	Rename Category to ProductCategory
+exec sp_rename 'Products.Category', 'ProductCategory', 'COLUMN'
+21.	Insert 5 records into the Products table using standard INSERT INTO queries.
+INSERT INTO Products VALUES
+(1,'Banana','fruit', 1000.15,15),
+(2,'TV','furniture', 500000.00,500),
+(3,'Teddy Bear','toy', 7000.00,400),
+(4,'Cook','equipment', 780000.00,400),
+  (5,'Cup','dish', 10000.00,100)
+22.	Use SELECT INTO to create a backup table called Products_Backup containing all Products data.
+SELECT * INTO Products_Backup FROM Products
+23.	Rename the Products table to Inventory.
+exec sp_rename 'Products', 'Inventory'
+24.	Alter the Inventory table to change the data type of Price from DECIMAL(10,2) to FLOAT.
+   ALTER table Inventory
+alter column Price float
+25.	Add an IDENTITY column named ProductCode that starts from 1000 and increments by 5 to Inventory table.
+ALTER table Inventory
+ADD ProductCode int IDENTITY(1000,5)
